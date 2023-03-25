@@ -19,8 +19,8 @@ proc insert (in/out a: array[1..n] of T, in i: nat)
 	od
 end proc
 ```
-*El ciclo for  del proc insertion_sort se identifica como δ.*  
-*El ciclo (anidado) while del proc insert se identifica como  φ.*  
+*La traza del ciclo for  del proc insertion_sort se identifica como δ.*  
+*La traza del ciclo (anidado) while del proc insert se identifica como  φ.*  
 *Recordemos que este ***-{ comentario }-***  es un comentario en*  ***ΔΔLang*** 
 
 *input: arr ≔ [ 7, 1 , 10 , 3, 4, 9, 5]*  

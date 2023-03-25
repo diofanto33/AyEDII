@@ -35,8 +35,8 @@
 		var j : int
 		j ≔ 1
 		for i ≔ 1 to n do
-		a[i] ≔ j
-		j ≔ j + 2
+			a[i] ≔ j
+			j ≔ j + 2
 		od 
 	end proc
 ```

@@ -9,7 +9,7 @@ t := 1
 	od
 ```
 
-Hacemos una tabla para algunos valores de n, nos servirá para observar el número de operaciones realizadas y cómo crece la variable t
+Hacemos una tabla para algunos valores de n, nos servirá para saber el número de operaciones realizadas y cómo crece la variable t
 
 |	n 		| 	 1   |    2   |   3   |   4    |   5    |   6    |   7    |   8    |    9    |    10   |    11   |    12   |
 |-----------|--------|--------|-------|--------|--------|--------|--------|--------|---------|---------|---------|---------|
@@ -21,8 +21,7 @@ Al graficar los puntos n en la abscisa y los puntos ops en la ordenada
 
 ![Gráfico de puntos](grafico_a.png)
 
-Podemos observar que la gráfica se aproxima a la función logaritmo
-De donde concluimos ***Ө(Log(n))***  
+Podemos observar que la gráfica se aproxima a la función logaritmo de donde concluimos ***Ө(Log(n))***  
 
 - La  relación entre t y ops es: ***t = 2<sup>ops - 1</sup>***  
 

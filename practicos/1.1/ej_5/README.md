@@ -48,12 +48,12 @@ ops(t := 0) + ops(for i := 1 to n do … od)
 **={ Producto de igual base se suman los exponentes }**  
 1 + n<sup>6</sup>  
 
-**⇒ Ө(n<sup>6</sub> )**
+**⇒ Ө(n<sup>6</sub>)**
 
 
 
 - **(b)**  
-```
+```C
 t := 0
 for i := 1 to n do
 	for j := 1 to i do
@@ -91,4 +91,4 @@ ops(t := 0) + ops(for i := 1 to n do … od)
 **={ Aritmética }**  
 1 + 2・n2 +  2・n  
 
-⇒ Ө(n<sup>2</sup>)
+**⇒ Ө(n<sup>2</sup>)**

@@ -4,9 +4,9 @@ ej_8: "Calcula el orden del número de asignaciones a la variable t de los sigui
 
 ```C
 t := 1
-	while  t < n do
-		t := t ∗ 2
-	od
+while  t < n do  
+	t := t ∗ 2
+od
 ```
 
 Hacemos una tabla para algunos valores de n, nos servirá para saber el número de operaciones realizadas y cómo crece la variable t

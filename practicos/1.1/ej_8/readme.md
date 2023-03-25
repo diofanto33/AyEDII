@@ -2,6 +2,23 @@
 ej_8a: "Insertion sort execution"
 ---
 
+# Algoritmo de Ordenación por inserción:
+```sh
+proc insertion_sort (in/out a: array[1..n] of T)
+	for i:= 2 to n do 
+		insert(a,i)
+	od
+end proc
+ 
+proc insert (in/out a: array[1..n] of T, in i: nat)
+	var j: nat
+	j:= i 
+	while j > 1 ∧ a[j] < a[j − 1]  do 
+		swap(a,j-1,j)
+		j:= j-1
+	od
+end proc
+```
 *El ciclo for  del proc insertion_sort se identifica como δ.*  
 *El ciclo (anidado) while del proc insert se identifica como  φ.*  
 *Recordemos que este ***-{ comentario }-***  es un comentario en*  ***ΔΔLang*** 
@@ -42,13 +59,13 @@ ej_8a: "Insertion sort execution"
 		- swap(arr, 4, 5)  
 		  ***-{ arr = [ 1, 3, 7, 4, 10, 9, 5] }-***  
 		- j ≔ j - 1  
-		 ***-{ j = 4}***
+		 ***-{ j = 4 }***
 	- **φ**<sub>**4**</sub> : 4 > 1 & arr[4] < arr[3]  
 	 ***-{ True }-***  
 		- swap(arr, 3, 4)  
 		  ***-{ arr = [ 1, 3, 4, 7, 10, 9, 5] }-***  
 		- j ≔ j - 1  
-		 ***-{ j = 3}***
+		 ***-{ j = 3 }***
 	- **φ**<sub>**3**</sub> : 3 > 1 & arr[3] < arr[2]  
 	 ***-{ False }-***  
 - **δ**<sub>**6**</sub> : insert(arr, 6)  

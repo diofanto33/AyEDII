@@ -2,7 +2,7 @@
 ej_8: "Calcula el orden del número de asignaciones a la variable t de los siguientes algoritmos."
 ---
 
-- (a)
+## (a)
 
 ```C
 t := 1
@@ -30,7 +30,7 @@ Podemos observar que la gráfica se aproxima a la función logaritmo de donde co
 - Mientras que t y n son proporcionales, crecen al mismo ritmo ***n ~ t***
 
 
-- (b)
+## (b)
 
 ```C
 t := n

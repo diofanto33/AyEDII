@@ -62,7 +62,7 @@ for i := 1 to n do
 	od
 od
 ```
-Por el inciso anterior sabemos que el while anidado es ***Ө(Log(n))***, por lo tanto basta calcular ops(for do ... od)
+Por el inciso anterior sabemos que el while anidado es ***Ө(Log(n))***, por lo tanto basta calcular ops(for i:=1 to n do ... od)
  
 Luego  
 ops(**for** i≔1 **to** n **do** (t ≔ i **do** ...i… **od**) **od** )  
@@ -121,7 +121,7 @@ n + 〈 ∑ i : 1 ≤ i ≤ n : i 〉
 n + [n(n+1)]/2  
 ={ Distributividad del producto con respecto a la suma }  
 n + n<sup>2</sup>/2 + n/2  
-={ Del mismo orden }
+={ Del mismo orden }  
 n<sup>2</sup>  
 
- ⇒ Ө(n<sup>2</sup>) 
+ ⇒ Ө(n<sup>2</sup>)

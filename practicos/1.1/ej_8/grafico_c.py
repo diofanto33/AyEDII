@@ -14,7 +14,7 @@ ax.scatter(x, y)
 ax.set_xlabel('n')
 ax.set_ylabel('ops')
 ax.set_xticks(range(1, 13))
-ax.set_yticks(range(1, 6))
+ax.set_yticks(range(1, 8))
 
 # Título del gráfico
 ax.set_title('Inciso d')

@@ -62,7 +62,7 @@ for i := 1 to n do
 	od
 od
 ```
-Por el inciso anterior sabemos que el while anidado es ***Ө(Log(n))***, por lo tanto basta calcular ops(for i:=1 to n do ... od)
+Por el inciso anterior sabemos que el while anidado es ***Ө(Log(n))***, por lo tanto basta calcular **ops(for i:=1 to n do ... od)**
  
 Luego  
 ops(**for** i≔1 **to** n **do** (t ≔ i **do** ...i… **od**) **od** )  
@@ -73,7 +73,7 @@ ops(**for** i≔1 **to** n **do** (t ≔ i **do** ...i… **od**) **od** )
 ={ Propiedad de log }  
 n + Log(n!)  
 
-⇒  **Ө(Log(n!))**
+**⇒**  ***Ө(Log(n!))***
 
 ## (d)
 
@@ -104,7 +104,7 @@ Graficando
 
 ![inciso b](grafico_c.png)  
 
-Concluimos **Ө(n)** orden lineal
+Concluimos ***Ө(n)*** orden lineal
 
 Luego aplicamos ops a todo el for  
 
@@ -124,4 +124,4 @@ n + n<sup>2</sup>/2 + n/2
 ={ Del mismo orden }  
 n<sup>2</sup>  
 
- ⇒ Ө(n<sup>2</sup>)
+ **⇒** ***Ө(n<sup>2</sup>)***

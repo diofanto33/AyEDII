@@ -66,11 +66,11 @@ Por el inciso anterior sabemos que el while anidado es ***Ө(Log(n))***, por lo 
  
 Luego  
 ops(**for** i≔1 **to** n **do** (t ≔ i **do** ...i… **od**) **od** )  
-={ Def de ops en for}  
+**={ Def de ops en for}**  
 〈 ∑ i : 1 ≤ i ≤ n : ops(t≔i **do** ..i.. **od**) 〉   
-={ Def de ops en asignación, además sabemos que ops(**do** .. n .. **od**) = log(n) por el inciso b }  
+**={ Def de ops en asignación, además sabemos que ops(**do** .. n .. **od**) = log(n) por el inciso b }**  
 〈 ∑ i : 1 ≤ i ≤ n : 1 + Log(i) 〉  
-={ Propiedad de log }  
+**={ Propiedad de log }**  
 n + Log(n!)  
 
 **⇒**  ***Ө(Log(n!))***
@@ -109,19 +109,19 @@ Concluimos ***Ө(n)*** orden lineal
 Luego aplicamos ops a todo el for  
 
 ops(**for** i≔1 **to** n **do** (t ≔ i **do** ...i… **od**) **od** )  
-={ Def de ops en for }  
-〈 ∑ i : 1 ≤ i ≤ n : ops(t≔i **do** ..i.. **od**) 〉   
-={ Def de ops en asignación, además sabemos que ops(**do** .. n .. **od**) = n }  
+**={ Def de ops en for }**  
+〈 ∑ i : 1 ≤ i ≤ n : ops(t≔i **do** ..i.. **od**) 〉  
+**={ Def de ops en asignación, además sabemos que ops(**do** .. n .. **od**) = n }**  
 〈 ∑ i : 1 ≤ i ≤ n : 1 + i 〉  
-={ Regla del termino }  
+**={ Regla del termino }**  
 〈 ∑ i : 1 ≤ i ≤ n : 1 〉+ 〈 ∑ i : 1 ≤ i ≤ n : i 〉  
-= { Propiedad 〈 ∑ i : 1 ≤ i ≤ n : 1 〉 = n }  
+**= { Propiedad 〈 ∑ i : 1 ≤ i ≤ n : 1 〉 = n }**  
 n + 〈 ∑ i : 1 ≤ i ≤ n : i 〉  
-= { Numero Triangular }  
+**= { Numero Triangular }**  
 n + [n(n+1)]/2  
-={ Distributividad del producto con respecto a la suma }  
+**={ Distributividad del producto con respecto a la suma }**  
 n + n<sup>2</sup>/2 + n/2  
-={ Del mismo orden }  
+**={ Del mismo orden }**  
 n<sup>2</sup>  
 
  **⇒** ***Ө(n<sup>2</sup>)***

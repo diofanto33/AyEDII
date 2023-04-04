@@ -24,9 +24,10 @@ proc merge (in/out a: array[1..n] of T, in lft,mid,rgt: nat)
     for i:= lft to rgt do
     	if j ≤ mid ∧ (k > rgt ∨ tmp[j] ≤ a[k]) then 
     		a[i]:= tmp[j]
-            j:=j+1
-        else  a[i]:= a[k]
-       		  k:=k+1
+                j:=j+1
+        else  
+		a[i]:= a[k]
+       		k:=k+1
         fi
     od
 end proc

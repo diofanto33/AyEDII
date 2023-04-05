@@ -39,7 +39,7 @@ proc merge_sort (in/out a: array[1..n] of T)
 end proc
 ```
 
-![Árbol Merge Sort](ruta/a/la/imagen.png)
+![Árbol Merge Sort](merge_sort_tree.png)
 
 *Para el procedimiento merge no se escribe la traza del primer for que copia en tmp ya que copiar un arreglo es trivial*  
 *Para el segundo for se usa ψ<sub>i</sub> para identificar la iteracion i-esima*

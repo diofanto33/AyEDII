@@ -35,13 +35,6 @@ fstring_eq(fixstring s1, fixstring s2)
 bool
 fstring_less_eq(fixstring s1, fixstring s2)
 {
-	unsigned int i = 0;
-	bool result = true;
-	while(result && s1[i] != '\0' && s2[i] != '\0')
-	{
-		result = result && (s1[i] <= s2[i]) && fstring_length(s1) <= fstring_length(s2);
-		i = i + 1;
-	}
-	return result; 
+	
 }
 

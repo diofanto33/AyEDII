@@ -24,9 +24,10 @@ proc merge (in/out a: array[1..n] of T, in lft,mid,rgt: nat)
     for i:= lft to rgt do
     	if j ≤ mid ∧ (k > rgt ∨ tmp[j] ≤ a[k]) then 
     		a[i]:= tmp[j]
-            j:=j+1
-        else  a[i]:= a[k]
-       		  k:=k+1
+                j:=j+1
+        else  
+		a[i]:= a[k]
+       		k:=k+1
         fi
     od
 end proc
@@ -37,7 +38,7 @@ proc merge_sort (in/out a: array[1..n] of T)
     merge_sort_rec(a, 1, n)
 end proc
 ```
-*Para el procedimiento merge no se escribe la traza del primer for que copia en tmp ya que copiar un arreglo es trivial*
+*Para el procedimiento merge no se escribe la traza del primer for que copia en tmp ya que copiar un arreglo es trivial*  
 *Para el segundo for se usa ψ<sub>i</sub> para identificar la iteracion i-esima*
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**  
@@ -249,11 +250,11 @@ merge_sort(a)
 			- a[6] := a[7]
 			- **-{ a = [1, 3, 7, 10, 4, 5, 5] }-**
 			- k := k + 1
-			- **-{ k = 8 }**
+			- **-{ k = 8 }-**
 		- fi
 	- ψ<sub>7</sub>
 		- if 6 ≤ 6 & (8 > 7 v 9 ≤ a[8])
-			- **-{ True }**
+			- **-{ True }-**
 			- a[7] := tmp[6]
 	  		- **-{ a = [1, 3, 7, 10, 4, 5, 9] }-**
 			- j := j + 1

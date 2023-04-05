@@ -38,12 +38,15 @@ proc merge_sort (in/out a: array[1..n] of T)
     merge_sort_rec(a, 1, n)
 end proc
 ```
+
+![Árbol Merge Sort](ruta/a/la/imagen.png)
+
 *Para el procedimiento merge no se escribe la traza del primer for que copia en tmp ya que copiar un arreglo es trivial*  
 *Para el segundo for se usa ψ<sub>i</sub> para identificar la iteracion i-esima*
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**  
 
-#Primera llamada
+# Primera llamada
 
 merge_sort(a)
 - merge_sort_rec(a, 1, 7)

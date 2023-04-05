@@ -1,0 +1,50 @@
+import graphviz
+
+def draw_tree():
+    dot = graphviz.Digraph()
+    
+    dot.node("merge_sort_rec(a, 1, 7)")
+    dot.node("merge_sort_rec(a, 1, 4)")
+    dot.node("merge_sort_rec(a, 5, 7)")
+    dot.node("merge_sort_rec(a, 5, 6)")
+    dot.node("merge_sort_rec(a, 1, 2)")
+    dot.node("merge_sort_rec(a, 3, 4)")
+    dot.node("merge_sort_rec(a, 7, 7)")
+    
+    dot.node("merge(a, 1, 2, 4)")
+    dot.node("merge(a, 1, 4, 7)")
+    dot.node("merge(a, 1, 1, 2)")
+    dot.node("merge(a, 5, 6, 7)")
+    dot.node("merge(a, 3, 3, 4)")
+    dot.node("merge(a, 5, 6, 6)")
+
+    dot.edge("merge_sort_rec(a, 1, 7)", "merge_sort_rec(a, 1, 4)")
+    dot.edge("merge_sort_rec(a, 1, 7)", "merge_sort_rec(a, 5, 7)")
+    dot.edge("merge_sort_rec(a, 1, 4)", "merge_sort_rec(a, 1, 2)")
+    dot.edge("merge_sort_rec(a, 1, 4)", "merge_sort_rec(a, 3, 4)")
+    dot.edge("merge_sort_rec(a, 5, 7)", "merge_sort_rec(a, 5, 6)")
+    dot.edge("merge_sort_rec(a, 5, 7)", "merge_sort_rec(a, 7, 7)")
+    dot.edge("merge_sort_rec(a, 3, 4)", "merge_sort_rec(a, 3, 3)")
+    dot.edge("merge_sort_rec(a, 3, 4)", "merge_sort_rec(a, 4, 4)")
+    dot.edge("merge_sort_rec(a, 1, 2)", "merge_sort_rec(a, 1, 1)")
+    dot.edge("merge_sort_rec(a, 1, 2)", "merge_sort_rec(a, 2, 2)")
+    dot.edge("merge_sort_rec(a, 5, 6)", "merge_sort_rec(a, 5, 5)")
+    dot.edge("merge_sort_rec(a, 5, 6)", "merge_sort_rec(a, 6, 6)")
+    
+    dot.edge("merge(a, 1, 2, 4)", "merge_sort_rec(a, 1, 2)")
+    dot.edge("merge(a, 1, 2, 4)", "merge_sort_rec(a, 3, 4)")
+    dot.edge("merge(a, 1, 4, 7)", "merge_sort_rec(a, 1, 4)")
+    dot.edge("merge(a, 1, 4, 7)", "merge_sort_rec(a, 5, 7)")
+    dot.edge("merge(a, 1, 1, 2)", "merge_sort_rec(a, 1, 1)")
+    dot.edge("merge(a, 1, 1, 2)", "merge_sort_rec(a, 2, 2)")
+    dot.edge("merge(a, 5, 6, 7)", "merge_sort_rec(a, 5, 6)")
+    dot.edge("merge(a, 5, 6, 7)", "merge_sort_rec(a, 7, 7)")
+    dot.edge("merge(a, 3, 3, 4)", "merge_sort_rec(a, 3, 3)")
+    dot.edge("merge(a, 3, 3, 4)", "merge_sort_rec(a, 4, 4)")
+    dot.edge("merge(a, 5, 6, 6)", "merge_sort_rec(a, 5, 5)")
+    dot.edge("merge(a, 5, 6, 6)", "merge_sort_rec(a, 6, 6)")
+
+#    dot.render("merge_sort_tree.gv", view=True)
+    dot.render("merge_sort_tree", format="png")
+
+draw_tree()

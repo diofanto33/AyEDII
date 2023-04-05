@@ -1,6 +1,8 @@
-# Ejercicio 1
+---
+ej_1: "Ordenar los arreglos del ejercicio 4 del practico anterior utilizando el algoritmo de  ordenación por intercalación."
+---
 
-***Ordenar los arreglos del ejercicio 4 del practico anterior utilizando el algoritmo de ordenacion por intercalacion.***
+# Algoritmo de ordenación por intercalación
 
 ```sh
 proc merge_sort_rec (in/out a: array[1..n] of T, in lft,rgt: nat)
@@ -41,13 +43,12 @@ end proc
 
 ![Árbol Merge Sort](merge_sort_tree.png)
 
-*Para el procedimiento merge no se escribe la traza del primer for que copia en tmp ya que copiar un arreglo es trivial*  
-*Para el segundo for se usa ψ<sub>i</sub> para identificar la iteracion i-esima*
+*En el procedimiento merge no se escribe la traza del primer for que copia en tmp*  
+*Ademas en el segundo for se usa ψ<sub>i</sub> para identificar la i-esima iteracion de su traza*
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**  
 
-# Primera llamada
-
+#
 merge_sort(a)
 - merge_sort_rec(a, 1, 7)
 	- if 7 > 1
@@ -184,7 +185,7 @@ merge_sort(a)
 		-fi
 	- od 
 
-# Mitad izquierda ordenada !
+# Mitad izquierda ordenada
 
 - merge_sort_rec(a, 5, 7)
 	- if 7 > 5
@@ -265,7 +266,9 @@ merge_sort(a)
 		- fi
 	- od
 
-# Mitad derecha ordenada! Ahora merge de mitad izquierda y mitad derecha 
+# Mitad derecha ordenada  
+*Ahora merge de mitad izquierda y mitad derecha*  
+
 - merge(a, 1, 4, 7)
 	- tmp[1, 2, 3, 4] := {1, 3, 7, 10}
 	- j := 1

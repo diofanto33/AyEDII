@@ -1,6 +1,6 @@
 # (a)
 
-```
+```sh
 proc intercalar_cada(in/out a : array[1..2^n] of int in i : nat )
 	var j, tam : nat
 	k ≔ 0
@@ -14,7 +14,7 @@ end proc
 
 # (b)
 
-```
+```sh
 proc merge_sort (in/out a : array[1..2^n] of int)
 	for i ≔ 1 to n do
 		intercalar_cada(a, i)

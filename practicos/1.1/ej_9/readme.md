@@ -10,9 +10,9 @@ fun ord_array(in a: array[1..n] of int) ret b : bool
 	od
 end fun
 ```
-ops(b := true) + ops(for i:=1 to n-1 do .... od)
-={ Def de ops asignacion & def de ops en for }
-1 +〈 ∑ i :  1 ≤ i ≤ n : ops(b := a[i]≤ a[i+1])〉
-={ Def de ops en asignacion }
+ops(b := true) + ops(for i:=1 to n-1 do .... od)  
+={ Def de ops asignacion & def de ops en for }  
+1 +〈 ∑ i :  1 ≤ i ≤ n : ops(b := a[i]≤ a[i+1])〉  
+={ Def de ops en asignacion }  
 1 +〈 ∑ i :  1 ≤ i ≤ n : 1 + ops(a[i]≤ a[i+1])〉
-
+??????????

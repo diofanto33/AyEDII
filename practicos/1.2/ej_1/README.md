@@ -41,12 +41,12 @@ proc merge_sort (in/out a: array[1..n] of T)
 end proc
 ```
 
-![Árbol Merge Sort](merge_sort_tree.png)
-
 *En el procedimiento merge no se escribe la traza del primer for que copia en tmp*  
 *Ademas en el segundo for se usa ψ<sub>i</sub> para identificar la i-esima iteracion de su traza*
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**  
+
+![Árbol Merge Sort](merge_sort_tree.png)
 
 #
 merge_sort(a)

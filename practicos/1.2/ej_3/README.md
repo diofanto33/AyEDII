@@ -2,7 +2,7 @@
 ej_3: "Ordenar los arreglos del ejercicio 4 del practico anterior utilizando el algoritmo de  ordenación rápida."
 ---
 
-# Algoritmo de ordenación por rápida
+# Algoritmo de ordenación rápida
 
 ```sh
 proc quick_sort_rec (in/out a: array[1..n] of T, in lft,rgt: nat)

@@ -25,8 +25,8 @@ proc partition (in/out a: array[1..n] of T, in lft, rgt: nat, out ppiv: nat)
 		if  a[i] ≤ a[ppiv] then i:= i+1
 		    a[j] ≥ a[ppiv] then j:= j-1
 			a[i] > a[ppiv] & a[j] < a[ppiv] then  swap(a,i,j)
-												  i:= i+1
-												  j:= j-1
+							      i:= i+1
+							      j:= j-1
 		fi
 	od
 	swap(a,ppiv,j)
@@ -39,7 +39,6 @@ proc quick_sort (in/out a: array[1..n] of T)
     quick_sort_rec(a,1,n)
 end proc
 ```
-λ 
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**
 

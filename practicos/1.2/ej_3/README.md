@@ -42,6 +42,9 @@ end proc
 
 **Sea a := [7, 1, 10, 3, 4, 9, 5] el input**
 
+![Tree](quick_sort_tree.png)
+
+
 quick_sort(a)
 - quick_sort_rec(a, 1, 7)
 	- if 7 > 1 

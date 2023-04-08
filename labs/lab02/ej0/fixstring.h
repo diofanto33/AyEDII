@@ -26,6 +26,11 @@ bool fstring_less_eq(fixstring s1, fixstring s2);
  *
  */
 
-
+bool fstring_prefix(fixstring s1, fixstring s2);
+/*
+ * fstring_prefix(s1, s2) returns true if s1 is a prefix of s2 and s1 is minor or equal to s2
+ * Returns false if s1 is not a prefix of s2 or s1 is major than s2
+ *
+ * */
 #endif
 

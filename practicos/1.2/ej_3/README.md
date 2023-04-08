@@ -24,9 +24,9 @@ proc partition (in/out a: array[1..n] of T, in lft, rgt: nat, out ppiv: nat)
 	while i ≤ j do 
 		if  a[i] ≤ a[ppiv] then i:= i+1
 		    a[j] ≥ a[ppiv] then j:= j-1
-			a[i] > a[ppiv] & a[j] < a[ppiv] then  swap(a,i,j)
-							      i:= i+1
-							      j:= j-1
+		    a[i] > a[ppiv] & a[j] < a[ppiv] then  swap(a,i,j)
+							  i:= i+1
+							  j:= j-1
 		fi
 	od
 	swap(a,ppiv,j)

@@ -6,8 +6,11 @@
 #define N_WORDS 4
 
 int main(void) {
-	fixstring words[N_WORDS]={"hola", "mundo", "auto","automovil"};
-//	fixstring words[N_WORDS] = {"abcd", "ab", "abcd", "ab"};
+//	fixstring words[N_WORDS]={"hola", "mundo", "auto","automovil"};
+	fixstring words[N_WORDS] = {"abcd", "ab", "axcd", "ab"};
+//	fixstring words[N_WORDS] = {"rodriguez", "lopez", "perez", "ramirez"};
+//	fixstring words[N_WORDS] = {"garcia", "lopez", "martinez", "sanchez"};
+//	fixstring words[N_WORDS] = {"Abate", "aBate", "1234", "_"};
 
     printf("Probando fstring_length()\n"
            "-------------------------\n\n");

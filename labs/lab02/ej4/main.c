@@ -57,6 +57,7 @@ int main(int argc, char *argv[]) {
 	printf("||||||||%s||||||||\n",argv[1]);
 
     /* Selection sort */
+	selection_sort(array, length);
 
     /* create a copy of the array */
     int copy[MAX_SIZE];
@@ -75,6 +76,7 @@ int main(int argc, char *argv[]) {
     printf("time elapsed=%g,    comparisons: %10u,    swaps: %10u\n\n", calculate_elapsed_time(), comparisons_number(), swaps_number());
 
     /* all the same for insertion_sort */
+	insertion_sort(array, length);
 
     /* create a copy of the array */
     int copy1[MAX_SIZE];
@@ -94,7 +96,8 @@ int main(int argc, char *argv[]) {
 
 
     /* all the same for quick_sort */
-    
+    quick_sort(array, length);
+
     /* create a copy of the array */
     int copy2[MAX_SIZE];
     array_copy(copy2, array, length);

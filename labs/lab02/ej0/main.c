@@ -6,6 +6,8 @@
 #define N_WORDS 4
 
 int main(void) {
+
+//	fixstring words[N_WORDS] = {"ABELARDO", "NAPOLEON", "ABEJA", "ABEJON"};
 //	fixstring words[N_WORDS]={"hola", "mundo", "auto","automovil"};
 	fixstring words[N_WORDS] = {"abcd", "ab", "axcd", "ab"};
 //	fixstring words[N_WORDS] = {"rodriguez", "lopez", "perez", "ramirez"};

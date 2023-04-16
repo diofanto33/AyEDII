@@ -40,6 +40,11 @@ data_from_file(const char *path,
 		}
 		length = length + 1;
 	}
+	if(length == max_size)
+	{
+		perror("Error: el archivo es demasiado grande");
+		exit(EXIT_FAILURE);
+	}
 	fclose(fd);
 	return length;
 }
@@ -50,12 +55,13 @@ main(int argc, char *argv[])
     unsigned int indexes[MAX_SIZE];
     char letters[MAX_SIZE];
     char sorted[MAX_SIZE];
-    unsigned int length=0; 
-  	
+    unsigned int length=0;
+
 	length = data_from_file(argv[1], indexes, letters, MAX_SIZE);
 
 	dump(letters, length);
-//    dump(sorted, length);
+
+	//  dump(sorted, length);
 
     return EXIT_SUCCESS;
 }

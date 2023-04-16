@@ -35,7 +35,7 @@ data_from_file(const char *path,
 		fscanf_result = fscanf(fd, "%d -> *%c*\n", &indexes[length], &letters[length]);
 		if(fscanf_result != 2)
 		{
-			perror("Error al leer el archivo");
+			perror("Error: el archivo no tiene el formato correcto");
 			exit(EXIT_FAILURE);
 		}
 		length = length + 1;
@@ -49,6 +49,27 @@ data_from_file(const char *path,
 	return length;
 }
 
+void
+sort_letters_by_index(unsigned int length,
+					  unsigned int indexes[],
+					  char letters[],
+					  char sorted[])
+{
+	unsigned int j=0;
+	unsigned int k=0;
+	while(k < length)
+	{
+		j = indexes[k];
+		if(j >= length)
+		{
+			perror("Error: el archivo tiene un indice fuera de rango");
+			exit(EXIT_FAILURE);
+		}
+		sorted[j] = letters[k];
+		k = k + 1;
+	}
+}
+
 int 
 main(int argc, char *argv[])
 {
@@ -59,10 +80,11 @@ main(int argc, char *argv[])
 
 	length = data_from_file(argv[1], indexes, letters, MAX_SIZE);
 
+	sort_letters_by_index(length, indexes, letters, sorted);
+
 	dump(letters, length);
 
-	//  dump(sorted, length);
+	dump(sorted, length);
 
     return EXIT_SUCCESS;
 }
-

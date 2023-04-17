@@ -1,5 +1,5 @@
-#include <stdbool.h>
 #include <assert.h>
+#include <stdbool.h>
 
 #include "fixstring.h"
 
@@ -22,6 +22,7 @@ fstring_eq(fixstring s1, fixstring s2)
 	{
 		result = false;
 	}
+	// length(s1) == length(s2)
 	else
 	{
 		unsigned int i = 0;

@@ -39,8 +39,7 @@ void fstring_swap(fixstring s1,  fixstring s2);
  *
  */
 
-
-
+bool fstring_prefix(fixstring s1, fixstring s2);
 
 #endif
 

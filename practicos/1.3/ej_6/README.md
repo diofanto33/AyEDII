@@ -2,11 +2,11 @@
 ej_6: "Escribir algoritmos cuyas complejidades sean (asumiendo que el lenguaje no tiene multiplicaciones ni logaritmos, o sea que no podes escribir for i:= 1 to n2 + 2 log n do . . . od:"
 ---
 
-- (a)
+## (a)
 
-***Ө(n<sup>2</sup> + 2Log(n))***
+- ***Ө(n<sup>2</sup> + 2Log(n))***
 
-```C
+```py
 fun fa(in n : nat) ret x : nat
     t ≔ 1  
     for i≔ 1 to n do  
@@ -24,9 +24,9 @@ fun fa(in n : nat) ret x : nat
 end proc
 ```
 
-- (b)
+## (b)
 
-***Ө(n<sup>2</sup>Log(n))***
+- ***Ө(n<sup>2</sup>Log(n))***
 
 ```py
 fun fb(in n : nat) ret t : nat
@@ -42,11 +42,11 @@ fun fb(in n : nat) ret t : nat
 end fun
 ```
 
-- (c)
+## (c)
 
-***Ө(3<sup>n</sup>)***
+- ***Ө(3<sup>n</sup>)***
 
-```C
+```py
 proc fc(in/out n : nat)  
     if(n==0)  
         skip  

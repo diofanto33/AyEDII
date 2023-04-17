@@ -24,6 +24,24 @@ fun fa(in n : nat) ret x : nat
 end proc
 ```
 
+- (b)
+
+***Ө(n<sup>2</sup>Log(n))***
+
+```py
+fun fb(in n : nat) ret t : nat
+	for i≔ 1 to n do
+		for j ≔ 1 to n do
+			t ≔ n
+			while t > 0 do 
+				t ≔ t.div.2
+			od
+
+		od
+	od
+end fun
+```
+
 - (c)
 
 ***Ө(3<sup>n</sup>)***

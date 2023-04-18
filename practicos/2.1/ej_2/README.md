@@ -22,7 +22,7 @@ end fun
 ## (b)
 - **Dar un algoritmo que devuelva un arreglo que registre para cada año entre 1980 y 2016 la mayor temperatura máxima (TempMax) registrada durante ese año**
 
-```py
+```C
 proc array_TempMax_of_med( in med : array[1980..2016, 
                                           enero.. diciembre, 
                      			  1..28,
@@ -49,7 +49,7 @@ end proc
 
 ## (c)
 - **Dar un algoritmo que devuelva un arreglo que registre para cada año entre 1980 y 2016 el mes de ese año en que se registró la mayor cantidad mensual de precipitaciones**
-```py
+```sh
 proc array_PrecMax_of_med( in med : array[1980..2016, 
                                           enero.. diciembre, 
                      			  1..28,

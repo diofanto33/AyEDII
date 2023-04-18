@@ -59,7 +59,7 @@ proc array_PrecMax_of_med( in med : array[1980..2016,
     var prec_max : nat	
         sum_by_month : nat
         sum_by_month_aux : nat
-        month_aux : nat
+        month_aux : mes
     sum_by_month_aux ≔ med[1980, enero, 1, PrecMax] 
     for año ≔ 1980 to 2016
     do

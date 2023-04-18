@@ -26,8 +26,8 @@ end fun
 ```py
 proc array_TempMax_of_med( in med : array[1980..2016, 
                                           enero.. diciembre, 
-                     					  1..28,
- 		                                  Temp..Prec] of nat,
+                     			  1..28,
+ 		                          Temp..Prec] of nat,
                            out tempMax_by_year : array[1980..2016] of nat) 
 		
     var year_tempMax : nat
@@ -54,8 +54,8 @@ end proc
 ```py
 proc array_PrecMax_of_med( in med : array[1980..2016, 
                                           enero.. diciembre, 
-                     					  1..28,
- 		                                  Temp..Prec] of nat,
+                     			  1..28,
+ 		                          Temp..Prec] of nat,
                             out precMax_by_year : array[1980..2016] of mes) 
 
     var prec_max : nat	

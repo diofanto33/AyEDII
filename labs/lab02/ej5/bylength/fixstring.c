@@ -1,13 +1,12 @@
 #include <assert.h>
 #include <stdbool.h>
-
 #include "fixstring.h"
 
 unsigned int
 fstring_length(fixstring s)
 {
 	unsigned int length = 0;
-	while(s[length] != '\0')
+	while(s[length] != '\0' && length < FIXSTRING_MAX -1)
 	{
 		length = length + 1;
 	}

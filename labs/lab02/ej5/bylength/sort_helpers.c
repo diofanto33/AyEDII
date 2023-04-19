@@ -16,7 +16,10 @@ swap(fixstring a[], unsigned int i, unsigned int j)
 bool
 goes_before(fixstring x, fixstring y)
 {
-	bool res = fstring_length(x) < fstring_length(y) && fstring_less_eq(x, y);
+	bool res;
+	unsigned int x_len = fstring_length(x);
+	unsigned int y_len = fstring_length(y);
+	res x_len <= y_len;
 	return res;
 }
 
@@ -30,4 +33,3 @@ array_is_sorted(fixstring array[], unsigned int length)
     }
     return (i >= length);
 }
-

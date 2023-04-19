@@ -19,7 +19,7 @@ goes_before(fixstring x, fixstring y)
 	bool res;
 	unsigned int x_len = fstring_length(x);
 	unsigned int y_len = fstring_length(y);
-	res x_len <= y_len;
+	res = x_len <= y_len;
 	return res;
 }
 

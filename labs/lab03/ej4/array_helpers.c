@@ -39,11 +39,14 @@ void array_dump(WeatherTable a) {
 }
 
 
-void array_from_file(WeatherTable array, const char *filepath) {
+void 
+array_from_file(WeatherTable array, const char *filepath)
+{
     FILE *file = NULL;
 
     file = fopen(filepath, "r");
-    if (file == NULL) {
+    if (file == NULL)
+	{
         fprintf(stderr, "File does not exist.\n");
         exit(EXIT_FAILURE);
     }
@@ -51,14 +54,26 @@ void array_from_file(WeatherTable array, const char *filepath) {
     unsigned int k_year = 0u;
     unsigned int k_month = 0u;
     unsigned int k_day = 0u;
-    while (!feof(file)) {
-        int res = fscanf(file, " %u %u %u ", &k_year, &k_month, &k_day);
-        if (res != 3) {
+	int res;
+    while (!feof(file))
+	{
+        res = fscanf(file, " %u %u %u ", &k_year, &k_month, &k_day);
+        if (res != 3)
+		{
             fprintf(stderr, "Invalid array.\n");
             exit(EXIT_FAILURE);
-        }
-        Weather weather = weather_from_file(file);
-        /* Completar acá: Guardar la medición de clima en el arreglo multidimensional */
-    }
+		}
+      	Weather weather = weather_from_file(file);
+		array[k_year - FST_YEAR][k_month - 1][k_day - FST_DAY] = weather;
+	}
     fclose(file);
+}
+
+void
+array_dump_1d(month_t array[])
+{
+	for(unsigned int i = 0; i < YEARS; i++)
+	{
+		printf("%d,\t", array[i]);
+	}
 }

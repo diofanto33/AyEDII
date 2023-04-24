@@ -20,6 +20,10 @@ typedef enum {january, february, march, april, may, june, july, august, septembe
 #define LST_DAY 28
 #define DAYS 28
 
+typedef unsigned int year_t;
+
+typedef unsigned int day_t;
+
 typedef Weather WeatherTable [YEARS][MONTHS][DAYS];
 
 /**
@@ -46,5 +50,7 @@ void array_dump(WeatherTable a);
  * @param filepath file with weather data
  */
 void array_from_file(WeatherTable a, const char *filepath);
+
+void array_dump_1d(month_t array[]);
 
 #endif

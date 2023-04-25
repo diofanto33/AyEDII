@@ -1,4 +1,6 @@
-# Material que no vale la pena leer
+# Descubre información interesante
+
+## Cosas
 
 - https://docs.google.com/presentation/d/1hKEI4iUbmWiT_orFPbwGsoc01O05ZnbXLhQ1cVWhCPA/edit
 
@@ -14,7 +16,39 @@
 
 - https://www.nongnu.org/gccintro-es/gccintro.es.html#Opciones-de-aviso-en-_002dWall
 
-# Unicodes interesantes
+## Compañeros que se coparon a compartir
+
+- https://github.com/wilitp/aed2
+
+- https://github.com/kevmansilla/AyED2
+
+- https://github.com/milicarabelos/Famaf/tree/master/2do/labAYED2
+
+- https://github.com/ishiaraen/algodatosII/tree/main/labs
+
+- https://github.com/sofia-bobbiesi/Labs_Algoritmos_II
+
+- https://github.com/Gonzalo-Canavesio/labAyED2_2021famaf
+
+- https://github.com/Lozano-Benjamin/FaMaF-2
+
+- https://github.com/facuayala00/Labo-AYED-2
+
+- https://github.com/AdolfoBanchio/Famaf/tree/main/2do/algo2
+
+- https://github.com/EbnerLautaro/Algoritmos-II
+
+- https://github.com/IgnaCat/ayed2
+
+- https://github.com/facundogranado/algodatos2
+
+- https://github.com/CayetanoGur/ayed2
+
+- https://github.com/jramosss/CS-FaMAF/tree/master/2/Algo%20II
+
+- https://github.com/Capt4inNem0/FAMAF-AyED2-Labs
+
+## Unicodes interesantes
 
  [utf8-chartable](https://www.utf8-chartable.de/unicode-utf8-table.pl) es un sitio web que proporciona una tabla Unicode completa con codificaciones UTF-8 correspondientes
 

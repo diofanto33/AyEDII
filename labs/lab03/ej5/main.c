@@ -91,6 +91,7 @@ int main(int argc, char *argv[]) {
         end = clock();
 
         /* cpu_time used to sort the array */
+		/* CLOCKS_PER_SEC is define in time.h too */
         double used_cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
 
         /* show the ordered array in the screen */

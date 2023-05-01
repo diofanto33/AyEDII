@@ -10,7 +10,7 @@ int min_temp_of_table(WeatherTable array);
 
 void max_temp_by_year_of_table(WeatherTable array, int output[YEARS]);
 
-void max_prec_by_month_of_array(WeatherTable array, month_t out[YEARS]);
+void max_rainfall_by_month_of_table(WeatherTable array, month_t out[YEARS]);
 
 #endif
 

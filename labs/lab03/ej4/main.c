@@ -10,6 +10,7 @@
 
 /* Then, this project's includes, alphabetically ordered */
 #include "array_helpers.h"
+#include "weather_utils.h"
 
 /**
  * @brief print usage help
@@ -27,6 +28,40 @@ void print_help(char *program_name) {
            "\n\n",
            program_name);
 }
+
+void max_temp_by_year_of_table_print(int a[YEARS])
+{
+	printf("\n");
+  	unsigned int year = FST_YEAR;
+	while(year <= LST_YEAR)
+	{
+		printf("For year %d the maximum temperature is: %d\n", year, a[year - FST_YEAR]);
+		year = year + 1;
+	}
+	printf("\n");
+}
+ 
+void max_rainfall_by_month_of_table_print(month_t a[YEARS])
+{
+    char const* months[] = {"January",
+							"February", 
+							"March",
+							"April",
+							"May",
+							"June",
+							"July",
+							"August",
+							"September",
+							"October",
+    						"November",
+							"December" };
+	
+	for(year_t k_year = FST_YEAR; k_year <= LST_YEAR; k_year = k_year + 1)
+	{
+		printf("For year %d, the month with the highest monthly amount of rainfall is: %s\n",k_year ,months[a[k_year-FST_YEAR]]);
+	}
+}
+
 
 /**
  * @brief reads file path from command line
@@ -72,6 +107,22 @@ int main(int argc, char *argv[]) {
 
     /* show the ordered array in the screen */
     array_dump(array);
+
+	/* show the historical maximum temperature */ 
+
+	printf("\n\nThe historical minimum temperature is: %d\n", min_temp_of_table(array));
+	
+	/* calculate the historical maximum temperature */
+	int out[YEARS];
+	max_temp_by_year_of_table(array, out);
+	/* show the historical maximum temperature */
+	max_temp_by_year_of_table_print(out);
+
+	/* calculate the historical maximum precipitation */
+	month_t outp[YEARS];
+	max_rainfall_by_month_of_table(array, outp);
+	/* show the historical maximum precipitation */
+	max_rainfall_by_month_of_table_print(outp);
 
     return (EXIT_SUCCESS);
 }

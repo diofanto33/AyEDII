@@ -74,6 +74,6 @@ array_dump_1d(month_t array[])
 {
 	for(unsigned int i = 0; i < YEARS; i++)
 	{
-		printf("%d,\t", array[i]);
+		printf("%c,\t", (month_t)array[i]);
 	}
 }

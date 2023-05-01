@@ -23,16 +23,16 @@ int main(void) {
     person_t m = {90, 'M'};
     int a[] = {0, 1, 2, 3};
 	
-	void *r;
-	r = &m;
-	((person_t*) r)->age = 100;
-	((person_t*) r)->name_initial = 'F';
-	r = &x;
-	*((int *) r) = 9;
-	r = a;
-	*(((int*) r)+1) = 42;
+    void *r;
+    r = &m;
+    ((person_t*) r)->age = 100;
+    ((person_t*) r)->name_initial = 'F';
+    r = &x;
+    *((int *) r) = 9;
+    r = a;
+    *(((int*) r)+1) = 42;
 
-	printf("x = %d\n", x);
+    printf("x = %d\n", x);
     printf("m = (%d, %c)\n", m.age, m.name_initial);
     printf("a[1] = %d\n", a[1]);
 

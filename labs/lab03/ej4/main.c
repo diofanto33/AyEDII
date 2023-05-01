@@ -44,17 +44,17 @@ void max_temp_by_year_of_table_print(int a[YEARS])
 void max_rainfall_by_month_of_table_print(month_t a[YEARS])
 {
     char const* months[] = {"January",
-							"February", 
-							"March",
-							"April",
-							"May",
-							"June",
-							"July",
-							"August",
-							"September",
-							"October",
-    						"November",
-							"December" };
+			    "February", 
+			    "March",
+			    "April",
+			    "May",
+			    "June",
+		       	    "July",
+			    "August",
+			    "September",
+			    "October",
+    	         	    "November",
+		            "December" };
 	
 	for(year_t k_year = FST_YEAR; k_year <= LST_YEAR; k_year = k_year + 1)
 	{
@@ -108,21 +108,21 @@ int main(int argc, char *argv[]) {
     /* show the ordered array in the screen */
     array_dump(array);
 
-	/* show the historical maximum temperature */ 
+    /* show the historical maximum temperature */ 
 
-	printf("\n\nThe historical minimum temperature is: %d\n", min_temp_of_table(array));
+    printf("\n\nThe historical minimum temperature is: %d\n", min_temp_of_table(array));
 	
-	/* calculate the historical maximum temperature */
-	int out[YEARS];
-	max_temp_by_year_of_table(array, out);
-	/* show the historical maximum temperature */
-	max_temp_by_year_of_table_print(out);
+    /* calculate the historical maximum temperature */
+    int out[YEARS];
+    max_temp_by_year_of_table(array, out);
+    /* show the historical maximum temperature */
+    max_temp_by_year_of_table_print(out);
 
-	/* calculate the historical maximum precipitation */
-	month_t outp[YEARS];
-	max_rainfall_by_month_of_table(array, outp);
-	/* show the historical maximum precipitation */
-	max_rainfall_by_month_of_table_print(outp);
+    /* calculate the historical maximum precipitation */
+    month_t outp[YEARS];
+    max_rainfall_by_month_of_table(array, outp);
+    /* show the historical maximum precipitation */
+    max_rainfall_by_month_of_table_print(outp);
 
     return (EXIT_SUCCESS);
 }

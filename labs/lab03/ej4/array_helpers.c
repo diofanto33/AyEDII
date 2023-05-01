@@ -46,7 +46,7 @@ array_from_file(WeatherTable array, const char *filepath)
 
     file = fopen(filepath, "r");
     if (file == NULL)
-	{
+    {
         fprintf(stderr, "File does not exist.\n");
         exit(EXIT_FAILURE);
     }
@@ -54,26 +54,17 @@ array_from_file(WeatherTable array, const char *filepath)
     unsigned int k_year = 0u;
     unsigned int k_month = 0u;
     unsigned int k_day = 0u;
-	int res;
+    int res;
     while (!feof(file))
-	{
+    {
         res = fscanf(file, " %u %u %u ", &k_year, &k_month, &k_day);
         if (res != 3)
-		{
+	{
             fprintf(stderr, "Invalid array.\n");
             exit(EXIT_FAILURE);
-		}
+	}
       	Weather weather = weather_from_file(file);
-		array[k_year - FST_YEAR][k_month - 1][k_day - FST_DAY] = weather;
-	}
+	array[k_year - FST_YEAR][k_month - 1][k_day - FST_DAY] = weather;
+    }
     fclose(file);
-}
-
-void
-array_dump_1d(month_t array[])
-{
-	for(unsigned int i = 0; i < YEARS; i++)
-	{
-		printf("%c,\t", (month_t)array[i]);
-	}
 }

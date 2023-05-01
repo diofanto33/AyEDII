@@ -48,7 +48,7 @@ main(void)
 {
     int a=0, res=0;
     a = -10;
-	absolute(a, res);
-	printf("%d", res);
+    absolute(a, res);
+    printf("%d", res);
     return EXIT_SUCCESS;
 }

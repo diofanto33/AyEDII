@@ -11,32 +11,38 @@
 static const int EXPECTED_DIM_VALUE = 2;
 
 static const char* CITY_NAMES[CITIES] = {
-    "Cordoba", "Rosario", "Posadas", "Tilcara", "Bariloche"};
+										  "Cordoba",
+										  "Rosario",
+										  "Posadas",
+										  "Tilcara",
+										  "Bariloche"
+										};
+
 static const char* SEASON_NAMES[SEASONS] = {"low", "high"};
 
 static void
-init_array(unsigned int a[CITIES * SEASONS])
+init_array(key_t a[CITIES * SEASONS])
 {
 	for(unsigned int i = 0u; i < CITIES * SEASONS; i = i + 1)
 	{
-		a[i] = CITIES;   // cualquier verdura que no pertencezca a [0,4]
+		a[i]._code = CITIES;   	// cualquier verdura que no pertencezca a [0,4]
+		a[i]._season = SEASONS; // cualquier verdura que no pertencezca a [0,1]
 	}
 }
 
 static int
-array_value_count(unsigned int a[CITIES * SEASONS], unsigned int value)
+array_value_count(key_t a[CITIES * SEASONS], key_t value)
 {
     unsigned int count = 0u;
     for (unsigned int i = 0u; i < CITIES * SEASONS; i = i + 1)
 	{
-    	if (a[i] == value)
+    	if (a[i]._code == value._code && a[i]._season == value._season)
 		{
-            count = count + 1;
+			count = count + 1;
         }
     }
     return count;
 }
-
 
 void 
 array_dump(BakeryProductTable a)
@@ -89,7 +95,7 @@ array_from_file(BakeryProductTable array, const char* filepath)
         exit(EXIT_FAILURE);
     }
     
-	unsigned int a[CITIES * SEASONS];
+	key_t a[CITIES * SEASONS];
 	init_array(a);
 	
 	int res = 0;
@@ -115,8 +121,12 @@ array_from_file(BakeryProductTable array, const char* filepath)
         /* COMPLETAR: Leer y guardar product en el array multidimensional*/
         /* Agregar las validaciones que considere necesarias*/
 		BakeryProduct lista = bakery_product_from_file(file);
-		a[i] = code;
-		if(array_value_count(a, code) > EXPECTED_DIM_VALUE)
+		a[i]._code = code;
+		a[i]._season = season;
+		key_t key;
+		key._code = code;
+		key._season = season;
+		if(array_value_count(a, key) >= EXPECTED_DIM_VALUE)
 		{	
 			perror("ERROR: Hay dos entradas distintas para la combinacion ciudad-temporada. \n");
 			exit(EXIT_FAILURE);

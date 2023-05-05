@@ -79,7 +79,6 @@ int main(int argc, char *argv[])
     /* show the data on the screen */
     array_dump(array);
 
-	printf("\nbest_profit es %u\n", best_profit(array));
-
+    printf("La mayor ganancia de la tabla %s es %u\n", argv[1], best_profit(array));
     return (EXIT_SUCCESS);
 }

@@ -26,6 +26,12 @@ typedef struct _product
     unsigned int sale_value;
 } BakeryProduct;
 
+typedef struct _code_season
+{
+	unsigned int _code;
+	unsigned int _season;
+} key_t;
+
 /**
  * @brief reads bakery product data from file line
  * @details

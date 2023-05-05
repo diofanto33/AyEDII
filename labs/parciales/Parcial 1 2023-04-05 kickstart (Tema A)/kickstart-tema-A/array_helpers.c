@@ -79,7 +79,6 @@ void
 array_from_file(BakeryProductTable array, const char* filepath)
 {
     FILE* file = NULL;
-
     file = fopen(filepath, "r");
     if (file == NULL)
     {
@@ -97,7 +96,6 @@ array_from_file(BakeryProductTable array, const char* filepath)
     
     while (!feof(file) && i < CITIES * SEASONS )
     {
-        
         res = fscanf(file, " ##%u??%u ", &code, &season);
 		
         if (res != EXPECTED_DIM_VALUE)

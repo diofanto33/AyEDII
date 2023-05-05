@@ -1,0 +1,11 @@
+Cordoba in low season: flour (750,1) Yeast (13,1) Butter (28,6) Sales value 977
+Cordoba in high season: flour (762,1) Yeast (14,7) Butter (32,7) Sales value 1091
+Rosario in low season: flour (807,5) Yeast (13,7) Butter (24,3) Sales value 4201
+Rosario in high season: flour (794,4) Yeast (10,2) Butter (29,1) Sales value 3265
+Posadas in low season: flour (765,6) Yeast (15,8) Butter (27,4) Sales value 4910
+Posadas in high season: flour (726,5) Yeast (14,3) Butter (29,7) Sales value 3904
+Tilcara in low season: flour (794,6) Yeast (11,9) Butter (26,8) Sales value 5161
+Tilcara in high season: flour (753,7) Yeast (11,10) Butter (32,2) Sales value 5494
+Bariloche in low season: flour (822,9) Yeast (14,3) Butter (24,10) Sales value 7736
+Bariloche in high season: flour (808,6) Yeast (13,8) Butter (26,4) Sales value 5064
+best_profit es 4512

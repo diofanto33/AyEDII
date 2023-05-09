@@ -1,7 +1,11 @@
 #ifndef _COUNTER_H
 #define _COUNTER_H
 
+#include <assert.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 
 /* counter as a pointer to structs to guarantee encapsulation */
 typedef struct _counter * counter;

@@ -1,6 +1,9 @@
 #ifndef _PAIR_H
 #define _PAIR_H
 
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct s_pair_t * pair_t;
 typedef int elem;
 

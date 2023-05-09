@@ -3,11 +3,14 @@
 #include "pair.h"    /* TAD Par         */
 
 static
-void show_pair(pair_t p) {
+void show_pair(pair_t p)
+{
     printf("(%d, %d)\n", pair_first(p), pair_second(p));
 }
 
-int main(void) {
+int
+main(void) 
+{
     pair_t p, q;
     // Nuevo par p
     p = pair_new(3, 4);

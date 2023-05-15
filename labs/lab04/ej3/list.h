@@ -1,7 +1,12 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 
 typedef int list_elem;
+
+typedef struct e_node_ *list;
 
 /* Constructores */
 
@@ -38,7 +43,7 @@ list concat_list(list l, list lx);
 
 /* Devuelve el n-esimo elemento de la lista l */
 /* PRE: length_list(l) > n */
-list_elem index_list(list l);
+list_elem index_list(list l, unsigned int n);
 
 /* Deja en l solo los primeros n elementos, eliminando el resto */
 list take_list(list l, unsigned int n);

@@ -26,7 +26,7 @@ char
     char *result = NULL;
 
     if (argc < 2)
-	{
+    {
         print_help(argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -49,7 +49,7 @@ average(list l)
     size = length_list(l);
     
     while(!is_empty_list(laux))
-	{
+    {
         elem = head(laux);
         result = result + elem;
         laux = tail(laux);
@@ -66,10 +66,10 @@ array_to_list(int array[], unsigned int length)
 	list l = empty_list();
     /* Initialize the list */
     for(unsigned int i = 0u; i < length; ++i)
-	{
+    {
         /* Add element to the list  */
     	l = addr_list(l, array[i]);
-	}
+    }
     /* Return list */
 	return(l);
 }

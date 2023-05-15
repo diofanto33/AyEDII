@@ -9,7 +9,9 @@
 /* Maximum allowed length of the array */
 static const unsigned int MAX_SIZE = 100000u;
 
-void print_help(char *program_name) {
+void
+print_help(char *program_name) 
+{
     /* Print the usage help of this program. */
     printf("Usage: %s <input file path>\n\n"
            "Compute average for the list of numbers in file.\n"
@@ -17,11 +19,14 @@ void print_help(char *program_name) {
            program_name);
 }
 
-char *parse_filepath(int argc, char *argv[]) {
+char 
+*parse_filepath(int argc, char *argv[])
+{
     /* Parse the filepath given by command line argument. */
     char *result = NULL;
 
-    if (argc < 2) {
+    if (argc < 2)
+	{
         print_help(argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -31,24 +36,49 @@ char *parse_filepath(int argc, char *argv[]) {
     return (result);
 }
 
+float
+average(list l)
+{
+    unsigned int size;
+    float elem;
+    float result;
+    list laux;
 
-float average(list l) {
-/*
-    Needs implementation.
-*/
-}
-
-list array_to_list(int array[], unsigned int length) {
-    /* Initialize the list */
-    for (unsigned int i = 0u; i < length; ++i) {
-        /* Add element to the list  */
+    laux = copy_list(l);
+    result = 0.0;
+    size = length_list(l);
+    
+    while(!is_empty_list(laux))
+	{
+        elem = head(laux);
+        result = result + elem;
+        laux = tail(laux);
     }
-    /* Return list */
+
+    destroy_list(laux);
+    result = result/size;
+    return result;
 }
 
-int main(int argc, char *argv[]) {
+list
+array_to_list(int array[], unsigned int length)
+{
+	list l = empty_list();
+    /* Initialize the list */
+    for(unsigned int i = 0u; i < length; ++i)
+	{
+        /* Add element to the list  */
+    	l = addr_list(l, array[i]);
+	}
+    /* Return list */
+	return(l);
+}
+
+int 
+main(int argc, char *argv[]) 
+{
     char *filepath = NULL;
-    FILE *file = NULL;
+   // FILE *file = NULL;
 
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);

@@ -5,26 +5,25 @@
 void 
 array_dump(int a[], unsigned int length)
 {
-    if( a == NULL)
+	if( a == NULL)
 	{
 		fprintf(stdout, "[]\n");
-
-	}
-	else 
-	{
+        }
+        else 
+        {
 		fprintf(stdout, "[");
-    	for (unsigned int i = 0u; i < length; ++i)
+		for (unsigned int i = 0u; i < length; ++i)
 		{
-        	fprintf(stdout, "%d", a[i]);
-        	if (i < length - 1) 
+			fprintf(stdout, "%d", a[i]);
+			if (i < length - 1)
 			{
-            	fprintf(stdout, ", ");
-        	} 
+				fprintf(stdout, ", ");
+			} 
 			else
 			{
-            	fprintf(stdout, "]\n");
-        	}
-    	}
+				fprintf(stdout, "]\n");
+			}
+		}
 	}
 }
 

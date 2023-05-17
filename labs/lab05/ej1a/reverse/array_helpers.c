@@ -4,15 +4,26 @@
 #include <stdlib.h>
 
 void array_dump(int a[], unsigned int length) {
-    fprintf(stdout, "[");
-    for (unsigned int i = 0u; i < length; ++i) {
-        fprintf(stdout, "%d", a[i]);
-        if (i < length - 1) {
-            fprintf(stdout, ", ");
-        } else {
-            fprintf(stdout, "]\n");
-        }
-    }
+	if( a == NULL || length == 0)
+	{
+		fprintf(stdout, "[]\n");
+	}
+	else 
+	{
+		fprintf(stdout, "[");
+    	for (unsigned int i = 0u; i < length; ++i)
+		{
+        	fprintf(stdout, "%d", a[i]);
+        	if (i < length - 1)
+			{
+            	fprintf(stdout, ", ");
+        	} 
+			else
+			{
+            	fprintf(stdout, "]\n");
+        	}
+		}
+	}
 }
 
 

@@ -4,4 +4,4 @@ la misma se puede encontrar en el apunte de la materia del Phd. D. Fridlender.
 
 *Notar las desventajas que prsenta esta implementacion*
 
-***La implementacion usando lista enlaza esta en el direcciorio acid_1b***
+***La implementacion usando lista enlazada se encuentra en el direcciorio acid_1b***

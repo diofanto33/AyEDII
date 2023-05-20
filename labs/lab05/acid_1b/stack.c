@@ -11,7 +11,7 @@ struct _s_stack_node {
 
 struct _s_stack {
     unsigned int size;
- 	struct _s_stack_node* first_node;
+    struct _s_stack_node* first_node;
 };
 
 /* @brief 

@@ -24,7 +24,7 @@ struct _s_stack {
 static bool 
 invrep(stack s)
 {	
-	bool b = (s != NULL);
+    bool b = (s != NULL);
 	if(b)
 	{	
 		struct _s_stack_node *p = s->first_node;

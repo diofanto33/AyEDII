@@ -3,14 +3,22 @@
 
 #include <string.h>
 
-char *string_clone(const char *str) {
+char
+*string_clone(const char *str) 
+{
     char *clone=NULL;
-    /* COMPLETAR */
-    return clone;
+   	if(str != NULL)
+	{	
+		// No esta permitido usar strdup. Usamos strndup
+		clone = strndup(str, strlen(str)+1);
+	}
+	return(clone);
 }
 
 
-int main(void) {
+int
+main(void) 
+{
     char *original=""
          "______ time ago in a galaxy far, far away...\n\n\n"
          "         _______..___________.     ___      .______             \n"
@@ -50,7 +58,7 @@ int main(void) {
     copy[4] = 'n';
     copy[5] = 'g';
     printf("Copia   : %s\n", copy);
-
+	free(copy);
 
     return EXIT_SUCCESS;
 }

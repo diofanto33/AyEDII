@@ -35,7 +35,8 @@ stack_pop(stack s)
 	stack sp = s;
 	s = s->next;
 	free(sp);
-	
+	sp = NULL;	
+
 	return(s);
 }
 
@@ -43,11 +44,13 @@ unsigned int
 stack_size(stack s)
 {
 	unsigned int length = 0;
-	while(s != NULL)
+	stack sp = s;
+	while(sp != NULL)
 	{
 		length = length + 1;
-		s = s->next;
+		sp = sp->next;
 	}
+	sp = NULL;
 	return(length);
 }
 

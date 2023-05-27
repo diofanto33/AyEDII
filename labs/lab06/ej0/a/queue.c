@@ -72,6 +72,7 @@ queue_enqueue(queue q, queue_elem e)
 		sp->next = new_node;
 		sp = NULL;
     }
+	q->size = q->size + 1u;
     assert(invrep(q) && !queue_is_empty(q));
     return(q);
 }
@@ -104,9 +105,9 @@ queue_dequeue(queue q)
     struct s_node * killme = q->first;
     q->first = q->first->next;
     killme = destroy_node(killme);
+	q->size = q->size - 1u;
     assert(invrep(q));
-    return q;
-
+    return (q);
 }
 
 void

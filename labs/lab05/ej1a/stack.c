@@ -69,15 +69,17 @@ stack_elem
 {
 	stack_elem *array = NULL;
 	if(s != NULL)
-	{
+	{	
+		stack sp = s;
 		unsigned int n = stack_size(s);	
 		array = calloc(n, sizeof(stack_elem));
-		while( n != 0)
+		while(n != 0)
 		{
-			array[n-1] = s->value;
-			s = s->next;
+			array[n-1] = sp->value;
+			sp = sp->next;
 			n = n - 1;
 		}
+		sp = NULL;
 	}
 	return(array);
 }

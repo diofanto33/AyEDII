@@ -59,8 +59,7 @@ pqueue
 pqueue_empty(void)
 {
     pqueue q=NULL;
-   	q = malloc(sizeof(pqueue));
-	assert(q!=NULL);
+   	q = malloc(sizeof(struct s_pqueue));
 	q->size = 0u;
 	q->first = NULL;
 	assert(invrep(q));

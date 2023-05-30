@@ -30,6 +30,7 @@ static struct s_node
 *destroy_node(struct s_node *node) 
 {
     assert(node != NULL);
+	node->next = NULL;
     free(node);
     node = NULL;
     return(node);
@@ -50,6 +51,7 @@ invrep(pqueue q)
 			length = length + 1u;
 			cp = cp->next;
 		}
+		cp = NULL;
 		res = res && length==q->size;
 	}
     return(res);
@@ -60,9 +62,11 @@ pqueue_empty(void)
 {
     pqueue q=NULL;
    	q = malloc(sizeof(struct s_pqueue));
+	assert(q != NULL);
 	q->size = 0u;
 	q->first = NULL;
 	assert(invrep(q));
+
     return(q);
 }
 

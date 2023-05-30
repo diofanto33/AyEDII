@@ -45,7 +45,8 @@ queue_empty(void)
 {
     queue q=NULL;
     
-	q = malloc(sizeof(queue));
+	q = malloc(sizeof(struct s_queue));
+	assert(q!=NULL);
 	q->first = NULL;
 	q->size = 0;
 

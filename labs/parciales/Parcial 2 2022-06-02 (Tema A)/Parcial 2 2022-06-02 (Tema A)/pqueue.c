@@ -5,13 +5,13 @@
 
 struct s_pqueue {
     unsigned int size;
-	struct s_node *first;
+    struct s_node *first;
 };
 
 struct s_node {
-	pqueue_elem elem;
-	unsigned int _priority;
-	struct s_node *next;
+    pqueue_elem elem;
+    unsigned int _priority;
+    struct s_node *next;
 };
 
 static struct s_node 
@@ -21,8 +21,9 @@ static struct s_node
     new_node = malloc(sizeof(struct s_node));
     assert(new_node!=NULL);
     new_node->elem = e;
-	new_node->_priority = priority;
-	new_node->next = NULL;
+    new_node->_priority = priority;
+    new_node->next = NULL;
+    
     return(new_node);
 }
 
@@ -30,30 +31,44 @@ static struct s_node
 *destroy_node(struct s_node *node) 
 {
     assert(node != NULL);
-	node->next = NULL;
+    node->next = NULL;
     free(node);
     node = NULL;
+    
     return(node);
 }
+
+/* Invariante de representacion
+ * @desc:
+ * Verifica tres cosas fundamentales que toda cola de prioridad debe cumplir
+ *
+ * 1) La cola de prioridad no es nula (está inicializada).
+ * 2) Los elementos de la cola están ordenados correctamente según sus prioridades.
+ * 3) El tamaño de la cola de prioridad es consistente con la longitud calculada.
+ *
+ * @param: cola de prioridad q
+ * @ret: bool res
+ * */
 
 static bool
 invrep(pqueue q) 
 {
     bool res = (q != NULL);
     if(res && q->size != 0u && q->first != NULL)
+    {
+        struct s_node *cp = NULL;
+	cp = q->first;
+	unsigned int length = 1u;
+	while(cp->next != NULL)
 	{
-		struct s_node *cp = NULL;
-		cp = q->first;
-		unsigned int length = 1u;
-		while(cp->next != NULL)
-		{
-			res = res && cp->_priority <= cp->next->_priority;
-			length = length + 1u;
-			cp = cp->next;
-		}
-		cp = NULL;
-		res = res && length==q->size;
+	    res = res && cp->_priority <= cp->next->_priority;
+	    length = length + 1u;
+	    cp = cp->next;
 	}
+	cp = NULL;
+	res = res && length==q->size;
+    }
+    
     return(res);
 }
 
@@ -61,11 +76,11 @@ pqueue
 pqueue_empty(void)
 {
     pqueue q=NULL;
-   	q = malloc(sizeof(struct s_pqueue));
-	assert(q != NULL);
-	q->size = 0u;
-	q->first = NULL;
-	assert(invrep(q));
+    q = malloc(sizeof(struct s_pqueue));
+    assert(q != NULL);
+    q->size = 0u;
+    q->first = NULL;
+    assert(invrep(q));
 
     return(q);
 }
@@ -75,103 +90,108 @@ pqueue_enqueue(pqueue q, pqueue_elem e, unsigned int priority)
 {
     assert(invrep(q));
     struct s_node *new_node = create_node(e, priority);
-	if(q->size == 0u && q->first == NULL)
+    if(q->size == 0u && q->first == NULL)
+    {
+        q->first = new_node;
+    }
+    else
+    {
+        struct s_node *cp = NULL;
+	struct s_node *prev = NULL;
+	cp = q->first;
+	while(cp->next != NULL && cp->_priority <= priority)
+	{	
+	    prev = cp;
+	    cp = cp->next;
+	}
+	if(cp->_priority > priority)
 	{
+	    new_node->next = cp;
+	    if(prev != NULL)
+	    {
+	        prev->next = new_node;
+	    }
+	    else
+	    {
 		q->first = new_node;
+	    }
 	}
 	else
 	{
-		struct s_node *cp = NULL;
-		struct s_node *prev = NULL;
-		cp = q->first;
-		while(cp->next != NULL && cp->_priority <= priority)
-		{	
-			prev = cp;
-			cp = cp->next;
-		}
-		if(cp->_priority > priority)
-		{
-			new_node->next = cp;
-			if(prev != NULL)
-			{
-				prev->next = new_node;
-			}
-			else
-			{
-				q->first = new_node;
-			}
-		}
-		else
-		{
-			new_node->next = cp->next;
-			cp->next = new_node;
-		}
-		cp = NULL;
-		prev = NULL;
+	    new_node->next = cp->next;
+	    cp->next = new_node;
 	}
-	q->size = q->size + 1u;
+	cp = NULL;
+	prev = NULL;
+    }
+    q->size = q->size + 1u;
     assert(invrep(q));
+    
     return(q);
 }
 
 bool
 pqueue_is_empty(pqueue q)
 {	
-	assert(invrep(q));
-	bool res = (q->size == 0u && q->first == NULL);    
+    assert(invrep(q));
+    bool res = (q->size == 0u && q->first == NULL);    
+    
     return(res);
 }
 
 pqueue_elem
 pqueue_peek(pqueue q)
 {
-	assert(!pqueue_is_empty(q) && invrep(q));
-	return(q->first->elem);
+    assert(!pqueue_is_empty(q) && invrep(q));
+    
+    return(q->first->elem);
 }
 
 unsigned int 
 pqueue_peek_priority(pqueue q)
 {	
-	assert(invrep(q) && !pqueue_is_empty(q));
-	return(q->first->_priority);
+    assert(invrep(q) && !pqueue_is_empty(q));
+    
+    return(q->first->_priority);
 }
 
 unsigned int 
 pqueue_size(pqueue q) 
 {
     assert(invrep(q));
+    
     return(q->size);
 }
 
 pqueue
 pqueue_dequeue(pqueue q)
 {
- 	assert(!pqueue_is_empty(q));
-	struct s_node *cp = NULL;
-	cp = q->first;
-	q->first = cp->next;
-	cp = destroy_node(cp);
+    assert(!pqueue_is_empty(q));
+    struct s_node *cp = NULL;
+    cp = q->first;
+    q->first = cp->next;
+    cp = destroy_node(cp);
     q->size = q->size -1u;
-	assert(invrep(q));
+    assert(invrep(q));
 
-	return(q);
+    return(q);
 }
 
 pqueue 
 pqueue_destroy(pqueue q) 
 {
     assert(invrep(q));
-   	struct s_node *cp = NULL;
-	struct s_node *prev = NULL;
-	cp = q->first;
-	while(cp != NULL)
-	{
-		prev = cp;
-		cp = cp->next;
-		prev = destroy_node(prev);
-	}
-	free(q);
-	q = NULL;
+    struct s_node *cp = NULL;
+    struct s_node *prev = NULL;
+    cp = q->first;
+    while(cp != NULL)
+    {
+        prev = cp;
+	cp = cp->next;
+	prev = destroy_node(prev);
+    }
+    free(q);
+    q = NULL;
     
-	return(q);
+    return(q);
 }

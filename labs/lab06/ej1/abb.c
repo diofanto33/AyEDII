@@ -182,7 +182,6 @@ abb_right(abb tree)
 static abb 
 remove_max(abb tree)
 {
-    assert(abb_is_empty(tree));
     if(!abb_is_empty(tree))
     {
         if(abb_is_empty(abb_right(tree)))

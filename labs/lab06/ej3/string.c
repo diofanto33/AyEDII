@@ -33,7 +33,7 @@ string_length(string str)
 bool
 string_less(const string str1, const string str2)
 {   
-    bool res = (strcmp(str1->content, str2->content) < 0; 
+    bool res = strcmp(str1->content, str2->content) < 0; 
     
     return(res);
 }   

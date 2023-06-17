@@ -140,36 +140,6 @@ rm_leaf(abb tree)
     return(tree);
 }
 
-/* 
- * @brief: Returns the left subtree of the tree.
- * @param: tree: The tree. 
- * @return: The left subtree of the tree. 
- *
- * */
-
-static abb 
-abb_left(abb tree)
-{   
-    assert(!abb_is_empty(tree));
-
-    return(tree->left);
-}
-
-/*
- * @brief: Returns the right subtree of the tree.
- * @param: tree: The tree.
- * @return: The root of the tree.
- *
- * */
-
-static abb 
-abb_right(abb tree)
-{   
-    assert(!abb_is_empty(tree));
-
-    return(tree->right);
-}
-
 /*
  * @brief: removes the maximum element of the tree.
  * @param: tree: The tree. 
@@ -184,14 +154,15 @@ remove_max(abb tree)
 {
     if(!abb_is_empty(tree))
     {
-        if(abb_is_empty(abb_right(tree)))
+        if(abb_is_empty(tree->right))
         {   
+            abb ref = tree->left;
             tree = rm_leaf(tree);
-            tree = abb_left(tree);
+            tree = ref;
         }
         else 
         {
-            tree->right = remove_max(abb_right(tree));
+            tree->right = remove_max(tree->right);
         }
     }
 
@@ -207,25 +178,24 @@ abb_remove(abb tree, abb_elem e)
     {
         if(elem_less(e, tree->elem))
         {
-            tree->left = abb_remove(abb_left(tree), e);
+            tree->left = abb_remove(tree->left, e);
         }
-        else if(e==tree->elem && abb_is_empty(abb_left(tree)))
+        else if(e==tree->elem && abb_is_empty(tree->left))
         {   
-            abb tp = abb_right(tree);
+            abb tp = tree->right;
             tree = rm_leaf(tree);
             tree = tp;
             tp = NULL;
         }
-        else if(e==tree->elem && !abb_is_empty(abb_left(tree)))
+        else if(e==tree->elem && !abb_is_empty(tree->left))
         {
-            tree->elem = abb_max(abb_left(tree));
-            tree->left = remove_max(abb_left(tree)); 
+            tree->elem = abb_max(tree->left);
+            tree->left = remove_max(tree->left); 
         }
         else if(elem_less(tree->elem, e))
         {
-            tree->right = abb_remove(abb_right(tree), e);
+            tree->right = abb_remove(tree->right, e);
         }
-
     }
 
     assert(invrep(tree) && !abb_exists(tree, e));
@@ -258,11 +228,11 @@ abb_add(abb tree, abb_elem e)
         }
         else if(elem_less(e, abb_root(tree)))
         {
-            tree->left = abb_add(abb_left(tree), e);
+            tree->left = abb_add(tree->left, e);
         }
-        else if(elem_less(abb_root(tree),e))
+        else if(elem_less(abb_root(tree), e))
         {
-            tree->right = abb_add(abb_right(tree), e);
+            tree->right = abb_add(tree->right, e);
         }
     } 
     assert(invrep(tree) && abb_exists(tree, e));
@@ -270,7 +240,6 @@ abb_add(abb tree, abb_elem e)
     return(tree);
 }
  
-
 bool
 abb_is_empty(abb tree)
 {
@@ -286,8 +255,8 @@ abb_exists(abb tree, abb_elem e)
     assert(invrep(tree));
 
     exists = (tree!=NULL) && ((elem_eq(e, tree->elem)) || 
-             (elem_less(tree->elem, e) && abb_exists(abb_right(tree), e)) ||
-             (elem_less(e, tree->elem) && abb_exists(abb_left(tree), e)));
+             (elem_less(tree->elem, e) && abb_exists(tree->right, e)) ||
+             (elem_less(e, tree->elem) && abb_exists(tree->left, e)));
 
     return(exists);
 }
@@ -299,8 +268,8 @@ abb_length(abb tree)
     assert(invrep(tree));
     if(!abb_is_empty(tree))
     {
-        length = abb_length(abb_left(tree))  +
-                 abb_length(abb_right(tree)) + 1u;
+        length = abb_length(tree->left)  +
+                 abb_length(tree->right) + 1u;
     }
     assert(invrep(tree) && (abb_is_empty(tree) || length > 0u));
 
@@ -322,13 +291,13 @@ abb_max(abb tree)
 {
     assert(invrep(tree) && !abb_is_empty(tree));
     abb_elem max_e;
-    if(abb_is_empty(abb_right(tree)))
+    if(abb_is_empty(tree->right))
     {
         max_e = tree->elem;
     }
     else
     {
-        max_e = abb_max(abb_right(tree));
+        max_e = abb_max(tree->right);
     }
     assert(invrep(tree) && abb_exists(tree, max_e));
     
@@ -340,13 +309,13 @@ abb_min(abb tree)
 {
     assert(invrep(tree) && !abb_is_empty(tree));
     abb_elem min_e;
-    if(abb_is_empty(abb_left(tree)))
+    if(abb_is_empty(tree->left))
     {
         min_e = tree->elem;
     }
     else
     {
-        min_e = abb_min(abb_left(tree));
+        min_e = abb_min(tree->left);
     }
     assert(invrep(tree) && abb_exists(tree, min_e));
     
@@ -359,9 +328,9 @@ abb_dump(abb tree)
     assert(invrep(tree));
     if (tree != NULL) 
     {
-        abb_dump(abb_left(tree));
+        abb_dump(tree->left);
         printf("%d ", tree->elem);
-        abb_dump(abb_right(tree));
+        abb_dump(tree->right);
     }
 }
 
@@ -371,8 +340,8 @@ abb_destroy(abb tree)
     assert(invrep(tree));
     if(!abb_is_empty(tree))
     {
-        abb_destroy(abb_left(tree));
-        abb_destroy(abb_right(tree));
+        abb_destroy(tree->left);
+        abb_destroy(tree->right);
         free(tree);
         tree = NULL;
     }

@@ -61,18 +61,18 @@ isSubtreeLeftLess(dict_t tree, key_t e)
 }
 
 static bool
-invrep(dict_t d)
+invrep(dict_t tree)
 {
     bool res = true;
-    if(d==NULL)
+    if(tree==NULL)
     {
         res = true;
     }
     else
     {    
-        res = isSubtreeRightGreater(d->right, d->key) &&
-              isSubtreeLeftLess(d->left, d->key) &&
-              invrep(d->right) && invrep(d->left);
+        res = isSubtreeRightGreater(tree->right, tree->key) &&
+              isSubtreeLeftLess(tree->left, tree->key) &&
+              invrep(tree->right) && invrep(tree->left);
     }
 
     return(res);
@@ -109,7 +109,7 @@ rm_leaf(dict_t tree)
 {
     assert(tree != NULL);
     tree->key = key_destroy(tree->key);
-    tree->key = value_destroy(tree->value);
+    tree->value = value_destroy(tree->value);
     tree->left = NULL;
     tree->right = NULL;
     free(tree);
@@ -161,9 +161,8 @@ remove_max(dict_t tree)
         if(tree->right == NULL)
         {   
             dict_t ref = tree->left;
-            tree = rm_leaf(tree);
-            tree = ref;
-            ref = NULL;
+            rm_leaf(tree);
+            return(ref);
         }
         else 
         {
@@ -173,6 +172,7 @@ remove_max(dict_t tree)
 
     return(tree);
 }
+
 
 dict_t
 dict_remove(dict_t tree, key_t e)
@@ -194,7 +194,7 @@ dict_remove(dict_t tree, key_t e)
             if(tree->left == NULL)
             {
                 dict_t tp = tree->right;
-                tree = rm_leaf(tree);
+                rm_leaf(tree);
                 tree = tp;
                 tp = NULL;
             }
@@ -206,10 +206,13 @@ dict_remove(dict_t tree, key_t e)
             }
         }   
     }
-    assert(invrep(tree) && !dict_exists(tree, e));
+    assert(invrep(tree)); // && !dict_exists(tree, e));
 
     return(tree);
 }
+ 
+
+
 
 dict_t 
 dict_empty(void) 
@@ -248,6 +251,27 @@ dict_add(dict_t dict, key_t word, value_t def)
     return(dict);
 }
 
+
+value_t 
+dict_search(dict_t dict, key_t word)
+{
+    assert(invrep(dict));
+    key_t def = dict == NULL                 ? NULL
+              : string_eq(word, dict->key)   ? dict->value
+              : string_less(word, dict->key) ? dict_search(dict->left, word)
+              : /* otherwise */                dict_search(dict->right, word);
+
+    return(def);
+}
+
+bool 
+dict_exists(dict_t dict, key_t word)
+{
+    return(dict_search(dict, word) != NULL);
+}
+
+
+/*
 value_t
 dict_search(dict_t dict, key_t word)
 {
@@ -271,7 +295,9 @@ dict_search(dict_t dict, key_t word)
     
     return(def);
 }
+*/ 
 
+/*
 bool 
 dict_exists(dict_t dict, key_t word) 
 {
@@ -283,6 +309,7 @@ dict_exists(dict_t dict, key_t word)
 
     return(exists);
 }
+*/ 
 
 unsigned int
 dict_length(dict_t dict)

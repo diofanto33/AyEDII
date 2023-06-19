@@ -206,7 +206,7 @@ dict_remove(dict_t tree, key_t e)
             }
         }   
     }
-    assert(invrep(tree)); // && !dict_exists(tree, e));
+    assert(invrep(tree) && !dict_exists(tree, e));
 
     return(tree);
 }

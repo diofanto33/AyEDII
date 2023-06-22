@@ -1,8 +1,6 @@
 #include <assert.h>
-#include <stdbool.h>
 #include <stdlib.h>
-#include <stdio.h>
-
+#include <string.h>
 #include "dict.h"
 #include "key_value.h"
 
@@ -13,330 +11,238 @@ struct _node_t {
     value_t value;
 };
 
-/*
- * @brief: Checks if all the elements of the right subtree are 
- * greater than the root of the tree. 
- *        
- * @param tree: The subtree to check.
- * @param e: The root of the tree of type abb_elem.
- * @return: True if all the elements of the right subtree are greater than
- * */
+static bool 
+is_abb(dict_t d, key_t min, key_t max)
+{
+    bool res = true;
+    if (d != NULL){
+        if(key_less(d->key, min) || key_less(max, d->key))
+        {
+            res = false;
+        }
+        else
+        {
+            res = is_abb(d->left, min, d->key) && is_abb(d->right, d->key, max);
+        }
+    }
+    return(res);
+}
+
+static key_t 
+getMin(dict_t d)
+{
+    key_t min;
+    dict_t p = d;
+    while(p->left != NULL)
+    {
+        p = p->left;
+    }
+    min = p->key;
+
+    return(min);
+}
+
+static key_t 
+getMax(dict_t d)
+{
+    key_t max;
+    dict_t p = d;
+    while(p->right != NULL)
+    {
+        p = p->right;
+    }
+    max = p->key;
+    
+    return(max);
+}
 
 static bool 
-isSubtreeRightGreater(dict_t tree, key_t e)
-{   
+invrep(dict_t d)
+{
     bool res = true;
-    if(tree != NULL) 
+    if (d != NULL)
     {
-        res = key_less(e, tree->key) && 
-              isSubtreeRightGreater(tree->right, e) &&
-              isSubtreeRightGreater(tree->left, e);
+        key_t min = getMin(d);
+        key_t max = getMax(d);
+        res = is_abb(d, min, max);
     }
 
     return(res);
 }
-
-/*
- * @brief: Checks if all the elements of the left subtree are 
- * less than the root of the tree. 
- *
- * @param tree: The tree to check.
- * @param e: The root of the tree. 
- * @return: True if all the elements of the left subtree are less than
- *
- * */
-
-static bool 
-isSubtreeLeftLess(dict_t tree, key_t e)
-{   
-    bool res = true;
-    if(tree != NULL) 
-    {
-        res = key_less(tree->key, e) &&
-              isSubtreeLeftLess(tree->left, e) &&
-              isSubtreeLeftLess(tree->right, e);
-    }
-
-    return(res);
-}
-
-static bool
-invrep(dict_t tree)
-{
-    bool res = true;
-    if(tree==NULL)
-    {
-        res = true;
-    }
-    else
-    {    
-        res = isSubtreeRightGreater(tree->right, tree->key) &&
-              isSubtreeLeftLess(tree->left, tree->key) &&
-              invrep(tree->right) && invrep(tree->left);
-    }
-
-    return(res);
-}
-
- /*
- * @brief: Creates a leaf of the abb.
- * @param: e: The element of the leaf.
- * @return: The leaf.
- *  */
-
-static dict_t 
-mk_leaf(key_t key, value_t def) 
-{   
-    dict_t tree = NULL; 
-    tree = malloc(sizeof(struct _node_t));
-    assert(tree != NULL);
-    tree->key = key;
-    tree->value = def;
-    tree->left = NULL; 
-    tree->right = NULL;
-    
-    return(tree);
-}
-
-/*
- * @brief: destroys a leaf of the dictionary.
- * @return: NULL
- *
- * */ 
-
-static dict_t
-rm_leaf(dict_t tree)
-{
-    assert(tree != NULL);
-    tree->key = key_destroy(tree->key);
-    tree->value = value_destroy(tree->value);
-    tree->left = NULL;
-    tree->right = NULL;
-    free(tree);
-    tree = NULL;
-
-    return(tree);
-}
-
-/*
- * @brief: compute the maximum element of the tree.
- * @param: tree: The tree.
- * @return: The maximum element of the tree.
- * @pre: The tree is not empty.
- * @post: The maximum element is in the tree.
- * */ 
-
-static key_t
-dict_max(dict_t tree) 
-{
-    assert(invrep(tree) && dict_length(tree) > 0u);
-    key_t max_e;
-    if(tree->right == NULL)
-    {
-        max_e = tree->key;
-    }
-    else
-    {
-        max_e = dict_max(tree->right);
-    }
-    assert(invrep(tree) && dict_exists(tree, max_e));
-    
-    return(max_e);
-}
-
-/*
- * @brief: removes the maximum element of the tree.
- * @param: tree: The tree. 
- * @return: The tree without the maximum element. 
- * 
- * @pre: The tree is not empty.
- *
- *  */
-
-static dict_t 
-remove_max(dict_t tree)
-{
-    if(tree != NULL)
-    {
-        if(tree->right == NULL)
-        {   
-            dict_t ref = tree->left;
-            rm_leaf(tree);
-            return(ref);
-        }
-        else 
-        {
-            tree->right = remove_max(tree->right);
-        }
-    }
-
-    return(tree);
-}
-
-
-dict_t
-dict_remove(dict_t tree, key_t e)
-{
-    assert(invrep(tree));
-    
-    if(tree != NULL )
-    {
-        if(key_less(e, tree->key))
-        {
-            tree->left = dict_remove(tree->left, e);
-        }
-        else if(key_less(tree->key, e))
-        {
-            tree->right = dict_remove(tree->right, e);
-        }
-        else 
-        {
-            if(tree->left == NULL)
-            {
-                dict_t tp = tree->right;
-                rm_leaf(tree);
-                tree = tp;
-                tp = NULL;
-            }
-            else 
-            {
-                tree->key = dict_max(tree->left);
-                tree->value = dict_search(tree->left, tree->key);
-                tree->left = remove_max(tree->left);
-            }
-        }   
-    }
-    assert(invrep(tree) && !dict_exists(tree, e));
-
-    return(tree);
-}
- 
-
-
 
 dict_t 
-dict_empty(void) 
+dict_empty(void)
 {
     dict_t dict = NULL;
-    assert(invrep(dict));
-
+    assert(invrep(dict) && dict_length(dict) == 0u);
+    
     return(dict);
 }
 
-dict_t
+dict_t 
 dict_add(dict_t dict, key_t word, value_t def)
 {
     assert(invrep(dict));
-    if(dict==NULL)
+    dict_t p = NULL;
+    if(dict == NULL)
     {
-        dict = mk_leaf(word, def);
+        p = malloc(sizeof(struct _node_t));
+        p->key = word;
+        p->value = def;
+        p->right = NULL;
+        p->left = NULL;
+        dict = p;
+        p = NULL;
     }
-    else 
+    else
     {
-        if(key_eq(word, dict->key))
+        if(key_eq(dict->key, word))
         {
+            dict->key = key_destroy(dict->key);
+            dict->value = value_destroy(dict->value);
+            dict->key = word;
             dict->value = def;
-        }
-        else if(key_less(word, dict->key))
-        {
-            dict->left = dict_add(dict->left, word, def);
         }
         else if(key_less(dict->key, word))
         {
             dict->right = dict_add(dict->right, word, def);
         }
-    } 
+        else if(key_less(word, dict->key))
+        {
+            dict->left = dict_add(dict->left, word, def);
+        }
+    }
     assert(invrep(dict) && value_eq(def, dict_search(dict, word)));
-
+    
     return(dict);
 }
-
 
 value_t 
 dict_search(dict_t dict, key_t word)
 {
     assert(invrep(dict));
-    key_t def = dict == NULL                 ? NULL
-              : string_eq(word, dict->key)   ? dict->value
-              : string_less(word, dict->key) ? dict_search(dict->left, word)
-              : /* otherwise */                dict_search(dict->right, word);
-
-    return(def);
+    value_t def = NULL;
+    if(dict_length(dict) != 0u)
+    {
+        if(key_eq(dict->key, word))
+        {
+            def = dict->value;
+        }
+        else if(key_less(dict->key, word))
+        {
+            def = dict_search(dict->right, word);
+        }
+        else
+        {
+            def = dict_search(dict->left, word);
+        }
+    }
+    assert((def != NULL) == dict_exists(dict, word));
+    return def;
 }
 
 bool 
 dict_exists(dict_t dict, key_t word)
 {
-    return(dict_search(dict, word) != NULL);
-}
-
-
-/*
-value_t
-dict_search(dict_t dict, key_t word)
-{
     assert(invrep(dict));
-    value_t def = NULL;
-    if(dict_exists(dict, word))
+    bool exists = false;
+    if(dict != NULL)
     {
-        if(key_eq(word, dict->key))
+        if(key_eq(dict->key, word))
         {
-            def = dict->value;
+            exists = true;
+        }
+        else if(key_less(dict->key, word))
+        {
+            exists = dict_exists(dict->right, word);
         }
         else if(key_less(word, dict->key))
         {
-            def = dict_search(dict->left, word);
-        }
-        else
-        {
-            def = dict_search(dict->right, word);
+            exists = dict_exists(dict->left, word);
         }
     }
-    
-    return(def);
-}
-*/ 
-
-/*
-bool 
-dict_exists(dict_t dict, key_t word) 
-{
     assert(invrep(dict));
-    bool exists = false;
-    exists = (dict!=NULL) && ((key_eq(word, dict->key)) || 
-             (key_less(dict->key, word) && dict_exists(dict->right, word)) ||
-             (key_less(word, dict->key) && dict_exists(dict->left, word)));
-
+    
     return(exists);
 }
-*/ 
 
-unsigned int
+unsigned int 
 dict_length(dict_t dict)
 {
     assert(invrep(dict));
-    unsigned int length = 0u;
+    unsigned int len = 0u;
     if(dict != NULL)
     {
-        length = 1u + dict_length(dict->right) 
-                    + dict_length(dict->left);
+        len = (dict_length(dict->right) + dict_length(dict->left) + 1u);
     }
-
-    return(length);
+    assert(invrep(dict) && (dict != NULL || len == 0u));
+    
+    return(len);
 }
 
-dict_t
+static dict_t 
+min_dict_key(dict_t dict)
+{
+    dict_t sp = dict;
+    while(sp->left != NULL)
+    {
+        sp = sp->left;
+    }
+
+    return(sp);
+}
+
+dict_t 
+dict_remove(dict_t dict, key_t word)
+{
+    assert(invrep(dict));
+    dict_t p = NULL;
+    if(dict != NULL)
+    {
+        if(key_eq(dict->key, word))
+        {
+            if(dict->right == NULL)
+            {
+                p = dict;
+                dict = dict->left;
+                p->value = value_destroy(p->value);
+                p->key = key_destroy(p->key);
+                free(p);
+                p = NULL;
+            }
+            else
+            {
+                p = min_dict_key(dict->right);
+                dict->value = value_destroy(dict->value);
+                dict->key = key_destroy(dict->key);
+                dict->key = key_clone(p->key);
+                dict->value = value_clone(p->value);
+                dict->right = dict_remove(dict->right, dict->key);
+            }
+        }
+        else if(key_less(dict->key, word))
+        {
+            dict->right = dict_remove(dict->right, word);
+        }
+        else
+        {
+            dict->left = dict_remove(dict->left, word);
+        }
+    }
+    assert(invrep(dict) && !dict_exists(dict, word));
+    
+    return(dict);
+}
+
+dict_t 
 dict_remove_all(dict_t dict)
 {
     assert(invrep(dict));
-    if(dict != NULL) 
+    if(dict != NULL)
     {
-        dict->key = key_destroy(dict->key);
-        dict->value = value_destroy(dict->value);
-        dict->left = dict_destroy(dict->left);
-        dict->right = dict_destroy(dict->right);
-        free(dict); 
-        dict = NULL;
+        dict->left = dict_remove_all(dict->left);
+        dict->right = dict_remove_all(dict->right);
+        dict = dict_remove(dict, dict->key);
     }
     assert(invrep(dict) && dict_length(dict) == 0u);
     
@@ -345,18 +251,32 @@ dict_remove_all(dict_t dict)
 
 void 
 dict_dump(dict_t dict, FILE *file)
-{   
-    if(dict != NULL)
+{
+    assert(invrep(dict) && file != NULL);
+    if (dict_length(dict) != 0u)
     {
         dict_dump(dict->left, file);
         key_dump(dict->key, file);
+        fprintf(file, ": ");
         value_dump(dict->value, file);
+        fprintf(file, "\n");
         dict_dump(dict->right, file);
     }
 }
 
-dict_t
+dict_t 
 dict_destroy(dict_t dict)
 {
-    return(dict_remove_all(dict));
+    assert(invrep(dict));
+    if(dict != NULL)
+    {
+        dict->left = dict_destroy(dict->left);
+        dict->right = dict_destroy(dict->right);
+        dict->key = key_destroy(dict->key);
+        dict->value = value_destroy(dict->value);
+        free(dict);
+    }
+    dict = NULL;
+    
+    return(dict);
 }

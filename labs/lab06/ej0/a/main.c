@@ -43,8 +43,9 @@ char *parse_filepath(int argc, char *argv[]) {
     return result;
 }
 
-
-int main(int argc, char *argv[]) {
+int
+main(int argc, char *argv[])
+{
     char *filepath = NULL;
 
     /* parse the filepath given in command line arguments */
@@ -60,7 +61,5 @@ int main(int argc, char *argv[]) {
     /* freeing the queue */
 	q = queue_destroy(q);
 	
-
     return EXIT_SUCCESS;
 }
-

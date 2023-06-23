@@ -43,7 +43,7 @@ invrep(stack s)
 stack
 stack_empty()
 {	
-	stack s = malloc(sizeof(stack));
+	stack s = malloc(sizeof(struct _s_stack));
 	s->first_node = NULL;
 	s->size = 0u;
     assert(invrep(s));
@@ -95,10 +95,12 @@ stack_top(stack s)
 	return(s->first_node->elem);
 }
 
-bool stack_is_empty(stack s)
+bool 
+stack_is_empty(stack s)
 {
 	assert(invrep(s));	
-	return(s->size == 0);
+	
+    return(s->size == 0);
 }
 
 stack_elem 

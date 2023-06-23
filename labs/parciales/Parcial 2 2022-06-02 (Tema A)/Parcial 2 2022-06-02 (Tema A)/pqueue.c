@@ -57,16 +57,16 @@ invrep(pqueue q)
     if(res && q->size != 0u && q->first != NULL)
     {
         struct s_node *cp = NULL;
-	cp = q->first;
-	unsigned int length = 1u;
-	while(cp->next != NULL)
-	{
-	    res = res && cp->_priority <= cp->next->_priority;
-	    length = length + 1u;
-	    cp = cp->next;
-	}
-	cp = NULL;
-	res = res && length==q->size;
+	    cp = q->first;
+        unsigned int length = 1u;
+	    while(cp->next != NULL)
+	    {
+	        res = res && cp->_priority <= cp->next->_priority;
+	        length = length + 1u;
+	        cp = cp->next;
+	    }
+	    cp = NULL;
+	    res = res && length==q->size;
     }
     
     return(res);

@@ -1,0 +1,14 @@
+auto  : rapido
+automovil   : de carreras
+avion  : volador
+chao  : despedirse
+computadora  : maquina 
+cuaderno   : hojas
+hola  : saludar
+holamundo  : de programacion
+lapiz  : para escribir
+patineta  : tabla con ruedas
+perro  : animal
+piano  : instrumento
+teclado  : pieza de compu
+xilofono  : instrumento

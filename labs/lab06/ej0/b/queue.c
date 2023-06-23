@@ -45,7 +45,8 @@ queue_empty(void)
 {
     queue q=NULL;
     
-	q = malloc(sizeof(queue));
+	q = malloc(sizeof(struct s_queue));
+	assert(q!=NULL);
 	q->first = NULL;
 	q->size = 0u;
 
@@ -107,7 +108,6 @@ queue_dequeue(queue q)
     killme = destroy_node(killme);
     assert(invrep(q));
     return q;
-
 }
 
 void
@@ -171,3 +171,5 @@ queue_disscard(queue q, unsigned int n)
 	assert(invrep(q));
 	return(q);
 }
+
+

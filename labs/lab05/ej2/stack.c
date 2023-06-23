@@ -38,23 +38,23 @@ stack_push(stack s, stack_elem e)
     if(s->size == s->capacity)
     {
         unsigned int double_capacity = (s->capacity)*2;
-	s->elems = realloc(s->elems, double_capacity*sizeof(stack_elem));
-	s->elems[s->size] = e;
-	s->size = s->size + 1;
-	s->capacity = double_capacity;
+	    s->elems = realloc(s->elems, double_capacity*sizeof(stack_elem));
+	    s->elems[s->size] = e;
+	    s->size = s->size + 1;
+	    s->capacity = double_capacity;
     }
     else
     {
-	s->elems[s->size] = e;
-	s->size = s->size + 1;
+	    s->elems[s->size] = e;
+	    s->size = s->size + 1;
     }
     assert(invrep(s));
     return(s);
 }
 
-/* No liberamos memoria del array.
-*  Suprimimos los elementos decrementando s->size
-*/
+/*  No liberamos memoria del array.
+ *  Suprimimos los elementos decrementando s->size
+ */
 
 stack
 stack_pop(stack s)
@@ -63,27 +63,6 @@ stack_pop(stack s)
     s->size = s->size - 1u;
     return(s);
 }
-
-/* ESTO NO
-
-stack
-stack_pop(stack s)
-{
-    assert(invrep(s) && s->size != 0);
-    stack_elem *p = NULL;
-    p = s->elems;
-    unsigned int i = s->size - 1u;
-    while(i != 0)
-    {
-	p = p + 1;
-	i = i - 1u;
-    }
-    free(p);
-    p = NULL;
-	
-    return(s);
-}
-*/
 
 unsigned int
 stack_size(stack s)
@@ -101,8 +80,8 @@ stack_top(stack s)
     unsigned int i = s->size - 1u;
     while(i != 0)
     {
-	p = p + 1;
-	i = i - 1u;
+	    p = p + 1;
+	    i = i - 1u;
     }
     return(*p);
 }
@@ -119,13 +98,13 @@ stack_elem
     stack_elem *sp = NULL;
     if(s->size != 0)
     {
-	sp = calloc(s->size, sizeof(stack_elem));
-	unsigned int i = 0u;
-	while(i < s->size)
-	{
-	    sp[i] = s->elems[i];
-	    i = i + 1;
-	}
+	    sp = calloc(s->size, sizeof(stack_elem));
+	    unsigned int i = 0u;
+	    while(i < s->size)
+	    {
+	        sp[i] = s->elems[i];
+	        i = i + 1;
+	    }
     }
     return(sp);
 }

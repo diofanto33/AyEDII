@@ -1,8 +1,0 @@
-alvaro : nombre
-astucia : asdadasdasd
-avion : volador
-casa : cuadrado
-cocos : fruta
-hola : saludar
-patineta : tabla con ruedas
-perros : animal
